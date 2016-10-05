@@ -24,8 +24,11 @@ and what you should write is the sayHi function that makes the code above work,
 
 
 
-  //Code Here for first
-  
+  function first(arr,cb) {
+    var firstIndex = arr[0];
+    return cb(firstIndex)
+  }
+
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -40,6 +43,10 @@ first(names, function(firstName){
 
 
   //Code Here for last
+function last(arr,cb) {
+  var lastIndex = arr[arr.length -1]
+  cb(lastIndex)
+}
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -56,7 +63,11 @@ last(names, function(lastName){
 
 
 
-  //Code Here for multiply
+ function multiply(num1,num2,cb) {
+   var times = num1 * num2;
+   cb(times)
+
+ }
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -73,6 +84,18 @@ multiply(4, 3, function(answer){
 
 
   //Code Here for contains
+function contains(arr,name,cb){
+  var i,
+      found = false;
+  for(i = 0; i < arr.length; i++) {
+    if(arr[i] === name) {
+      found = true;
+      return cb(found)
+    }
+  }
+  return cb(found)
+
+}
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -91,12 +114,49 @@ contains(names, 'Colt', function(result){
 
 
 
-    //Code Here for uniq
+function uniq(arr,cb){
+  var sortedArray = arr.slice().sort();
+  //console.log(sortedArray);
+
+  var results = [],
+      newArr = [];
+  for (var i = 0; i < arr.length - 1; i++) {
+    if (sortedArray[i + 1] == sortedArray[i]) {
+      results.push(sortedArray[i]);
+
+    }else if(sortedArray[i + 1] != sortedArray[i]) {
+      newArr.push(sortedArray[i]);
+    }
+
+  }
+  console.log(results);
+  console.log(sortedArray);
+  console.log(newArr);
+  cb(newArr)
+
+}
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
 });
 
+
+
+// Here is another example
+
+//function unique(arr,cb) {
+//  var out = [],
+//      obj = {};
+//
+//  for (var i = 0; i < arr.length; i++) {
+//    obj[arr[i]] = 0;
+//  }
+//
+//  for (key in obj) {
+//    out.push(key);
+//  }
+//  return cb(out);
+//}
 
 
 
@@ -105,8 +165,12 @@ uniq(names, function(uniqArr){
 
 
 
-
-    //Code Here for each
+function each(arr,cb) {
+  var i;
+  for(i = 0; i < arr.length; i++) {
+    cb(i,arr[i])
+  }
+}
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -117,8 +181,6 @@ each(names, function(item, indice){
 
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
-
-
 
 
 
